@@ -10,6 +10,7 @@ module.exports = async (req, res) => {
     const threshold = req.query.threshold;
     console.log(frontUrl, backUrl);
     if (frontUrl && backUrl) {
+        res.setHeader('content-type', 'image/jpeg');
         const frontImg = fs.createReadStream(path.resolve(assetsPath, frontUrl));
         const backImg = fs.createReadStream(path.resolve(assetsPath, backUrl));
         replaceBackground(frontImg, backImg, color, threshold || 0).then((readableStream) => {
